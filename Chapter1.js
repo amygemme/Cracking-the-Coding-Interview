@@ -1,21 +1,39 @@
 // ===============CRACK THE CODING INTERVIEW CHAPTER 1 =============// 
-const inquirer = require('inquirer');
+//const inquirer = require('inquirer');
 
-inquirer
-  .prompt([
-    {type: "input", message: "enter first string", name: "string1"},
-    {type: "input", message: "enter second string", name: "string2"}
-  ])
-  .then(answers => {
-    var input = answers;
+// inquirer
+//   .prompt([
+//     {type: "input", message: "enter first string", name: "string1"},
+//     {type: "input", message: "enter second string", name: "string2"}
+//   ])
+//   .then(answers => {
+//     var input = answers;
  
 
- let str1 = input.string1;
- let str2 = input.string2;
+ let str1 = "";
+ let str2 = "";
 
- console.log(str1 +" || " + str2);
-  
-//===========    1.1  are all char unique in a string   =======================
+ //console.log(str1 +" || " + str2);
+
+ 
+ //Begin Front End // 
+
+ //===========    1.1  are all char unique in a string   =======================
+
+$("#uniqueButton").on("click", function () {
+  var str1 = document.getElementById("uniquetext").value;
+  $("#unique").empty();
+  //var str2 = document.getElementById("string2").value;
+  let result = uniqueChar(str1);
+  if(result){
+    $("#unique").append("TRUE, Every character is unique");
+    console.log("result is true, the char are unique");
+  }
+  else{console.log("false it is not unique")
+  $("#unique").append("FALSE, There is a repeated character");  
+  }
+  console.log("enter button");
+});
 
 console.log("(1.1) Is the string Unique")
 
@@ -37,23 +55,53 @@ console.log(str2 + "\n" + uniqueChar(str2));
 
    //====  SOLVED ==== ///  
 
+
+
+
+
+
     //  ============== 1.2  given two strings, is one a permutation of the other  ===========
-    console.log("(1.2) Is one string a permutation of the other")
+  console.log("(1.2) Is one string a permutation of the other")
     
-    console.log("1: " + str1 + "\n2: " + str2);
-    var sortAlphabets = function(text) {
-        return text.split('').sort().join('');
-    };
+  console.log("1: " + str1 + "\n2: " + str2);
+  var sortAlphabets = function(text) {
+    return text.split('').sort().join('');
+  };
     
-    function IsPermOfOther(string1, string2) {
-        if(sortAlphabets(string1) == sortAlphabets(string2)){
+  function IsPermOfOther(string1, string2) {
+    if(sortAlphabets(string1) == sortAlphabets(string2)){
             return true;
         }
-        else{return false}
+    else{return false}
         };
         
     console.log(IsPermOfOther(str1, str2));
 
+    $("#permButton").on("click", function () {
+      var str1 = document.getElementById("perm1").value;
+      var str2 = document.getElementById("perm2").value;
+
+      $("#perm").empty();
+      //var str2 = document.getElementById("string2").value;
+      let result = IsPermOfOther(str1, str2)
+      if(result){
+        $("#perm").append("They are permutaions of each other");
+        console.log("result is true, the char are unique");
+      }
+      else{console.log("false it is not unique")
+      $("#perm").append("They are NOT permutations of each other");  
+      }
+      console.log("enter button");
+    });
+    
+    //Solved///////////////
+
+
+
+
+
+
+    
     //  =========  1.3  replace all spaces with a '%20'   ===================
    
    console.log("1.3  replace all spaces with '%20'" )
@@ -206,6 +254,6 @@ function OneEditAway(str1, str2){
   }
 
 
-});
+//});
 
 

@@ -1,62 +1,154 @@
-const inquirer = require('inquirer');
+// test function 
 
-inquirer
-  .prompt([
-    { type: "input", message: "enter first string", name: "string1" },
-    { type: "input", message: "enter second string", name: "string2" }
-  ])
-  .then(answers => {
-    var input = answers;
-    // console.log(input)
+function LinkedList() {
+  this.head = null;
+}
 
+LinkedList.prototype.isEmpty = function () {
+  return this.head === null;
+};
 
-    let str1 = input.string1;
-    let str2 = input.string2;
+LinkedList.prototype.size = function () {
+  var current = this.head;
+  var count = 0;
 
-    // console.log(str1 + str2);
-    // test function 
+  while (current !== null) {
+    count++;
+    current = current.next
+  }
 
-    var a = [];
-    a.push(["1", "2", "3"]);
-    a.push(["4", "5", "6"]);
-    a.push(["7", "8", "9"]);
+  return count;
+}
 
-    let n = a[0].length;
-    console.log(n);
-    let even = true;
-    if (n % 2 == 0) { even = true }
-    else { even = false };
-    console.log("even  " + even);
+LinkedList.prototype.prepend = function (val) {
+  var NewNode = {
+    data: val,
+    next: this.head
+  }
 
+  this.head = NewNode;
+}
 
-    function rotate90(matrix) {
-      display(matrix);
-        let b = [];
-        for (j = 0; j < n; j++) {
-          let temp = [];
-          for (i = n - 1; i >= 0; i--) {
-            console.log(a[i][j]);
-            console.log("i  " + i)
-            temp.push(a[i][j])
-          }
-          b.push(temp);
-          // console.log(b);
-          display(b);
-        }
-      
+LinkedList.prototype.append = function (val) {
+  var newNode = {
+    data: val,
+    next: null
+  }
+  if (this.isEmpty()) {
+    this.head = newNode;
+    return;
+  }
+  var current = this.head;
+
+  while (current.next != null) {
+    current = current.next;
+  }
+
+  current.next = newNode;
+
+};
+
+LinkedList.prototype.contains = function (val) {
+  var current = this.head;
+  while (current != null) {
+    if (current.data === val) {
+      return true;
     }
+    current = current.next;
+  }
+  return false;
+}
 
-    rotate90(a);
+LinkedList.prototype.remove = function (val) {
+  if (!this.contains(val)) {
+    return
+  }
+  if (this.head.data === val) {
+    this.head = this.head.next;
+    return;
+  }
 
-    function display(a) {
-      for (let i = 0; i < n; i++) {
-        console.log(a[i]);
-      }
+  var prev = null;
+  var current = this.head;
+
+  while (current.data !== val) {
+    prev = current;
+    current = current.next;
+  }
+
+  prev.next = current.next;
+
+};
+
+LinkedList.prototype.removeIndex = function(val){
+  if(this.head === null){return;}
+  if(!this.contains(val)){return;}
+  let size = this.size();
+  var current = this.head;
+  for(let i=0; i<size; i++){
+    while(i!==val){
+      current=current.next
     }
+  }  
+  return;
+}
+
+LinkedList.prototype.print = function () {
+  var output = '{';
+  var current = this.head;
+
+  while (current !== null) {
+    output += current.data;
+    if (current.next !== null) {
+      output += ', ';
+    }
+    current = current.next;
+  }
+  output += '}'
+  console.log(output);
+}
+
+function GenerateList(val) {
+  var list = new LinkedList();
+  for (let i = 0; i < val; i++) {
+    let ran = Math.round(Math.random() * 10);
+    list.append(ran);
+  }
+  list.print();
+  return list;
+}
+
+var list = GenerateList(12);
 
 
 
-    // function end
+// test area ========function end ==========================
 
-  });
+// });
 
+
+LinkedList.prototype.RemoveDuplicate = function () {
+  var size = this.size();
+  if (size == 1 || size == 0) { return }
+  var values = [];
+  var current = this.head;
+  console.log(current.data + "   test")
+  for (let i = 0; i < size; i++) {
+    if (values.includes(current.data)) {
+      console.log("repeat  " + current.data);
+      var repeat = current.data;
+      this.remove(repeat);
+      current = current.next;
+    }
+    else {
+      values.push(current.data);
+      console.log(values);
+      current = current.next;
+    }
+  }
+  this.print();
+}
+
+list.print();
+list.RemoveDuplicate();
+list.print();
