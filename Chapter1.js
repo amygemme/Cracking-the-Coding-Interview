@@ -92,6 +92,7 @@ console.log(str2 + "\n" + uniqueChar(str2));
    
    console.log("1.3  replace all spaces with '%20'" )
    $("#replaceButton").on("click", function () {
+      console.log("replace button");
         var str = document.getElementById("replaceText").value;
         let str1 = str.trim();
         var chars = str1.split('');
@@ -103,7 +104,8 @@ console.log(str2 + "\n" + uniqueChar(str2));
         }
 
         var result = chars.join('');
-        $("#replace").append(resultgj);  
+        $("#replace").empty();
+        $("#replace").append(result);  
 
    });
   
