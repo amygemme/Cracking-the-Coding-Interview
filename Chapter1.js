@@ -1,26 +1,14 @@
-// ===============CRACK THE CODING INTERVIEW CHAPTER 1 =============// 
-//const inquirer = require('inquirer');
-
-// inquirer
-//   .prompt([
-//     {type: "input", message: "enter first string", name: "string1"},
-//     {type: "input", message: "enter second string", name: "string2"}
-//   ])
-//   .then(answers => {
-//     var input = answers;
- 
+// ===============CRACK THE CODING INTERVIEW CHAPTER 1 =============//  
 
  let str1 = "";
  let str2 = "";
-
- //console.log(str1 +" || " + str2);
-
  
  //Begin Front End // 
 
  //===========    1.1  are all char unique in a string   =======================
 
 $("#uniqueButton").on("click", function () {
+  console.log("button");
   var str1 = document.getElementById("uniquetext").value;
   $("#unique").empty();
   //var str2 = document.getElementById("string2").value;
@@ -78,6 +66,7 @@ console.log(str2 + "\n" + uniqueChar(str2));
     console.log(IsPermOfOther(str1, str2));
 
     $("#permButton").on("click", function () {
+      console.log("permButoon");
       var str1 = document.getElementById("perm1").value;
       var str2 = document.getElementById("perm2").value;
 
@@ -85,10 +74,12 @@ console.log(str2 + "\n" + uniqueChar(str2));
       //var str2 = document.getElementById("string2").value;
       let result = IsPermOfOther(str1, str2)
       if(result){
+        $("#perm").empty();
         $("#perm").append("They are permutaions of each other");
         console.log("result is true, the char are unique");
       }
       else{console.log("false it is not unique")
+      $("#perm").empty();
       $("#perm").append("They are NOT permutations of each other");  
       }
       console.log("enter button");
@@ -96,28 +87,27 @@ console.log(str2 + "\n" + uniqueChar(str2));
     
     //Solved///////////////
 
-
-
-
-
-
-    
+45
     //  =========  1.3  replace all spaces with a '%20'   ===================
    
    console.log("1.3  replace all spaces with '%20'" )
-    function replaceSpace(str) {
+   $("#replaceButton").on("click", function () {
+        var str = document.getElementById("replaceText").value;
         let str1 = str.trim();
         var chars = str1.split('');
   
         for (let i = 0; i < chars.length; i++) {
           if (chars[i] == " ") {
             chars[i] = "%20";
-          }
+          } 
         }
-        return chars.join('');
-      };
+
+        var result = chars.join('');
+        $("#replace").append(resultgj);  
+
+   });
   
-      console.log(replaceSpace(str1));
+     // console.log(replaceSpace(str1));
       
 // ===========  1.4  is the string a permutaion of a palindrome   ==========
     console.log("(1.4) is it a permutation of a palindrome")
